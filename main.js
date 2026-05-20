@@ -35,6 +35,7 @@ async function preloadAssets() {
     const loaderBar = document.getElementById('loader-bar');
     const loaderPerc = document.getElementById('loader-perc');
     const loaderLogo = document.querySelector('.loader-logo');
+    gsap.to(loaderLogo, { y: '0%', duration: 1.2, ease: 'expo.out' });
 
     let loadedCount = 0;
     const totalAssets = frames.length + 1; // Frames + Logo
