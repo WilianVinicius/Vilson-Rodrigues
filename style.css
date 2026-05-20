@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Inter", sans-serif;
+  --font-serif: "Georgia", serif;
+  --color-ochre: #af6446;
+  --color-linen: #f2edde;
+  --color-charcoal: #000000;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: initial;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+  }
+}
+
+@layer components {
+  .logo-img {
+    filter: brightness(0);
+  }
+
+  .project-card {
+    @apply flex-shrink-0 w-[85vw] md:w-[65vw] h-[60vh] md:h-[75vh] mr-12 md:mr-24 relative overflow-hidden;
+  }
+
+  .project-card img {
+    @apply w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0 hover:scale-105;
+  }
+
+  .project-info {
+    @apply absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full transform translate-y-full transition-transform duration-500;
+  }
+
+  .project-card:hover .project-info {
+    @apply translate-y-0;
+  }
+
+  .project-caption {
+    @apply text-white font-display font-bold text-xs tracking-widest uppercase;
+  }
+
+  .footer-name {
+    font-size: 14vw;
+  }
+}
+
+/* Custom Animation Classes */
+.loader-logo {
+  filter: brightness(0);
+}
+
+.sequence-frame {
+  @apply absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300;
+}
+
+.sequence-frame.active {
+  @apply opacity-100;
+}
+
+#construction-sequence::after {
+    content: "";
+    @apply absolute inset-0 bg-black/10;
+}
