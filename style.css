@@ -24,8 +24,30 @@
   filter: grayscale(1) contrast(1.2);
 }
 
-.logo-img-white {
+/* Navbar Styles */
+.navbar {
+  background: transparent;
+}
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.nav-logo {
   filter: brightness(0) invert(1);
+}
+/* Hamburger → X animation */
+.menu-open .hamburger-line:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+.menu-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.menu-open .hamburger-line:nth-child(3) {
+  width: 1.5rem;
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 .hero-title {

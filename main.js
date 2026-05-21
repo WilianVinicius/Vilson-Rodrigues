@@ -95,30 +95,45 @@ if (document.readyState === 'complete') {
 }
 
 function initAnimations() {
-    // Mobile Menu Logic
+    // Scroll-Aware Navbar Background
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Interactive Mobile Menu Toggle with Hamburger Animation
     const menuToggle = document.getElementById('menu-toggle');
-    const menuToggleText = document.getElementById('menu-toggle-text');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    let isMenuOpen = false;
-
-    const toggleMenu = () => {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-            gsap.to(mobileMenu, { opacity: 1, pointerEvents: 'auto', duration: 0.5 });
-            menuToggleText.innerText = 'FECHAR';
-            lenis.stop();
-        } else {
-            gsap.to(mobileMenu, { opacity: 0, pointerEvents: 'none', duration: 0.5 });
-            menuToggleText.innerText = 'MENU';
-            lenis.start();
-        }
-    };
-
-    menuToggle.addEventListener('click', toggleMenu);
-    mobileLinks.forEach(link => link.addEventListener('click', () => {
-        if (isMenuOpen) toggleMenu();
-    }));
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    if (menuToggle && mobileMenu) {
+        let menuOpen = false;
+        const toggleMenu = () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                menuToggle.classList.add('menu-open');
+                lenis.stop();
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                menuToggle.classList.remove('menu-open');
+                lenis.start();
+            }
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (menuOpen) toggleMenu();
+            });
+        });
+    }
 
     // Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
