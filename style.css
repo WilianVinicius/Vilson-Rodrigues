@@ -64,6 +64,10 @@
   letter-spacing: -0.04em;
 }
 
+.text-shadow-subtle {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .scroll-dot {
   animation: scrollAnim 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }

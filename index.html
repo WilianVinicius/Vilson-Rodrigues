@@ -67,22 +67,23 @@
         <!-- Hero Section -->
         <section id="hero-canvas-container" class="relative bg-ochre">
             <canvas id="hero-canvas" class="absolute inset-0 w-full h-full"></canvas>
+            <div class="absolute inset-0 bg-black/40 z-1"></div>
 
-            <div class="container relative z-10 px-8 md:px-20 pt-40 pb-20 flex flex-col justify-end min-h-screen pointer-events-none">
+            <div class="container relative z-10 px-8 md:px-20 pt-40 pb-20 flex flex-col justify-end min-h-screen pointer-events-none text-white">
                 <div class="max-w-[1440px] pointer-events-auto">
-                    <h1 class="hero-title text-[clamp(4rem,10vw,120px)] leading-[0.8] font-display font-black mb-12">
+                    <h1 class="hero-title text-[clamp(4rem,10vw,120px)] leading-[0.8] font-display font-black mb-12 text-shadow-subtle">
                         DO ALICERCE<br>AO ACABAMENTO.
                     </h1>
-                    <p class="hero-sub text-[clamp(1.25rem,2vw,26px)] font-serif leading-[1.23] max-w-2xl opacity-80">
+                    <p class="hero-sub text-[clamp(1.25rem,2vw,26px)] font-serif leading-[1.23] max-w-2xl opacity-90 text-shadow-subtle">
                         Vilson Rodrigues transforma projetos em legados. Uma obra de excelência começa na precisão e termina na satisfação.
                     </p>
                 </div>
             </div>
 
-            <div class="hero-scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center opacity-40 pointer-events-auto">
-                <span class="text-[8px] font-display tracking-[0.35em] uppercase mb-2 text-charcoal">DESLIZE</span>
-                <div class="w-[1px] h-10 bg-charcoal/20 relative overflow-hidden">
-                    <div class="scroll-dot absolute top-0 left-0 w-full h-3 bg-charcoal"></div>
+            <div class="hero-scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center opacity-70 pointer-events-auto text-white">
+                <span class="text-[8px] font-display tracking-[0.35em] uppercase mb-2 text-shadow-subtle">DESLIZE</span>
+                <div class="w-[1px] h-10 bg-white/20 relative overflow-hidden">
+                    <div class="scroll-dot absolute top-0 left-0 w-full h-3 bg-white"></div>
                 </div>
             </div>
         </section>
@@ -135,29 +136,29 @@
                     <div class="project-card">
                         <img src="./img1.png" alt="Residencial Alvorada">
                         <div class="project-info">
-                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black">01 // RESIDENCIAL</span>
-                            <p class="project-caption text-white">Mansão Alpha — Estrutura Complexa e Revestimentos Nobres</p>
+                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black text-shadow-subtle">01 // RESIDENCIAL</span>
+                            <p class="project-caption text-white text-shadow-subtle">Mansão Alpha — Estrutura Complexa e Revestimentos Nobres</p>
                         </div>
                     </div>
                     <div class="project-card">
                         <img src="./img5.png" alt="Galpão Industrial">
                         <div class="project-info">
-                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black">02 // ESTRUTURAS</span>
-                            <p class="project-caption text-white">Complexo Industrial — Fundações de Alta Performance</p>
+                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black text-shadow-subtle">02 // ESTRUTURAS</span>
+                            <p class="project-caption text-white text-shadow-subtle">Complexo Industrial — Fundações de Alta Performance</p>
                         </div>
                     </div>
                     <div class="project-card">
                         <img src="./img8.png" alt="Apartamento Loft">
                         <div class="project-info">
-                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black">03 // INTERIORES</span>
-                            <p class="project-caption text-white">Loft Metropolitano — Design Moderno e Integração</p>
+                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black text-shadow-subtle">03 // INTERIORES</span>
+                            <p class="project-caption text-white text-shadow-subtle">Loft Metropolitano — Design Moderno e Integração</p>
                         </div>
                     </div>
                     <div class="project-card">
                         <img src="./img10.png" alt="Obra Recente">
                         <div class="project-info">
-                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black">04 // ACABAMENTO</span>
-                            <p class="project-caption text-white">Residencial Infinity — Acabamentos de Luxo</p>
+                            <span class="text-[9px] font-display tracking-[0.3em] text-ochre mb-2 block font-black text-shadow-subtle">04 // ACABAMENTO</span>
+                            <p class="project-caption text-white text-shadow-subtle">Residencial Infinity — Acabamentos de Luxo</p>
                         </div>
                     </div>
                 </div>
@@ -197,16 +198,16 @@
 
         <!-- Placeholder Video Background Section -->
         <section class="video-cta-section relative h-[70vh] flex items-center justify-center overflow-hidden bg-charcoal">
-            <div class="absolute inset-0 bg-black/60 z-10"></div>
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
             <video class="lazy-video absolute inset-0 w-full h-full object-cover grayscale opacity-40" autoplay loop muted playsinline>
                 <source data-src="https://player.vimeo.com/external/370331493.sd.mp4?s=1557887806509aa03f21b0e3624c96568d760773&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
             </video>
 
-            <div class="container mx-auto px-8 relative z-20 text-center">
-                <h2 class="text-[clamp(2.5rem,6vw,80px)] leading-[1] font-display font-black text-white mb-8">
+            <div class="container mx-auto px-8 relative z-20 text-center text-white">
+                <h2 class="text-[clamp(2.5rem,6vw,80px)] leading-[1] font-display font-black mb-8 text-shadow-subtle">
                     TRANSFORMANDO<br><span class="text-ochre">SONHOS EM CONCRETO.</span>
                 </h2>
-                <p class="text-lg font-serif text-white/60 max-w-2xl mx-auto">Excelência técnica e dedicação absoluta em cada detalhe da sua construção.</p>
+                <p class="text-lg font-serif opacity-80 max-w-2xl mx-auto text-shadow-subtle">Excelência técnica e dedicação absoluta em cada detalhe da sua construção.</p>
             </div>
         </section>
 
