@@ -221,6 +221,34 @@ function initAnimations() {
     // Responsive Animations with matchMedia
     let mm = gsap.matchMedia();
 
+    // Lazy Video Loading and Playback Control
+    const lazyVideos = document.querySelectorAll('.lazy-video');
+    if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const video = entry.target;
+                const source = video.querySelector('source');
+
+                if (entry.isIntersecting) {
+                    if (source && source.dataset.src) {
+                        source.src = source.dataset.src;
+                        source.removeAttribute('data-src');
+                        video.load();
+                    }
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
+        }, {
+            rootMargin: "300px"
+        });
+
+        lazyVideos.forEach((video) => {
+            videoObserver.observe(video);
+        });
+    }
+
     mm.add("(min-width: 1024px)", () => {
         // Horizontal Scroll
         const horizontalScroll = document.querySelector('.horizontal-scroll');
