@@ -24,6 +24,16 @@
   filter: grayscale(1) contrast(1.2);
 }
 
+#hero-canvas-container {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  display: block;
+}
+
 /* Navbar Styles */
 .navbar {
   background: transparent;

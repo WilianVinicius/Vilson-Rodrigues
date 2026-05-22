@@ -21,10 +21,13 @@ gsap.ticker.add((time) => {
 gsap.ticker.lagSmoothing(0);
 
 // Loading Screen & Asset Preloading
-const frames = [
-    './img1.png', './img2.png', './img3.png', './img4.png', './img5.png',
-    './img6.png', './img7.png', './img8.png', './img9.png', './img10.png'
+const portfolioImages = [
+    '/img1.png', '/img2.png', '/img3.png', '/img4.png', '/img5.png',
+    '/img6.png', '/img7.png', '/img8.png', '/img9.png', '/img10.png'
 ];
+
+const HERO_FRAME_COUNT = 100;
+const heroImages = [];
 
 let isLoaded = false;
 async function preloadAssets() {
@@ -38,7 +41,7 @@ async function preloadAssets() {
     gsap.to(loaderLogo, { y: '0%', duration: 1.2, ease: 'expo.out' });
 
     let loadedCount = 0;
-    const totalAssets = frames.length + 1; // Frames + Logo
+    const totalAssets = portfolioImages.length + HERO_FRAME_COUNT + 1; // Portfolio + Hero Frames + Logo
 
     const revealSite = () => {
         const tl = gsap.timeline();
@@ -66,26 +69,53 @@ async function preloadAssets() {
         }
     };
 
-    // Safety timeout
+    // Safety timeout - Increased for more assets
     const safetyTimeout = setTimeout(() => {
         if (loadedCount < totalAssets) {
             revealSite();
         }
-    }, 5000);
+    }, 15000);
 
     // Load logo
     const logoImg = new Image();
     logoImg.onload = updateProgress;
     logoImg.onerror = updateProgress;
-    logoImg.src = './logo.png';
+    logoImg.src = '/logo.png';
 
-    // Load frames
-    frames.forEach(src => {
+    // Load Portfolio Images
+    portfolioImages.forEach(src => {
         const img = new Image();
         img.onload = updateProgress;
         img.onerror = updateProgress;
         img.src = src;
     });
+
+    // Load Hero Frames (Desktop by default or based on initial width)
+    const folder = window.innerWidth >= 1024 ? "desktop" : "mobile";
+    for (let i = 0; i < HERO_FRAME_COUNT; i++) {
+        const img = new Image();
+        img.onload = updateProgress;
+        img.onerror = updateProgress;
+        img.src = `/assets/hero-frames/${folder}/${(i + 1).toString().padStart(4, "0")}.webp`;
+        heroImages.push(img);
+    }
+}
+
+// Helper to load a new set of hero images (on resize)
+async function reloadHeroImages(folder) {
+    heroImages.length = 0; // Clear array
+    const loadPromises = [];
+    for (let i = 0; i < HERO_FRAME_COUNT; i++) {
+        const img = new Image();
+        const promise = new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve;
+        });
+        img.src = `/assets/hero-frames/${folder}/${(i + 1).toString().padStart(4, "0")}.webp`;
+        heroImages.push(img);
+        loadPromises.push(promise);
+    }
+    await Promise.all(loadPromises);
 }
 
 if (document.readyState === 'complete') {
@@ -151,31 +181,67 @@ function initAnimations() {
         });
     });
 
-    const sequenceContainer = document.querySelector('#construction-sequence .relative');
+    const canvas = document.getElementById("hero-canvas");
+    const context = canvas.getContext("2d");
+    const airship = { frame: 0 };
 
-    frames.forEach((src, index) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.className = `absolute inset-0 w-full h-full object-cover opacity-0 frame-${index}`;
-        sequenceContainer.appendChild(img);
-    });
+    const drawImage = () => {
+        const img = heroImages[airship.frame];
+        if (!img) return;
 
-    const sequenceTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "+=300%", // Increased for more frames
-            pin: true,
-            scrub: true,
-        }
-    });
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const imgWidth = img.width;
+        const imgHeight = img.height;
 
-    frames.forEach((_, index) => {
-        sequenceTl.to(`.frame-${index}`, { opacity: 0.4, duration: 1 }, index);
-        if (index > 0) {
-            sequenceTl.to(`.frame-${index-1}`, { opacity: 0, duration: 1 }, index);
-        }
-    });
+        const ratio = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
+        const newWidth = imgWidth * ratio;
+        const newHeight = imgHeight * ratio;
+        const x = (canvasWidth - newWidth) / 2;
+        const y = (canvasHeight - newHeight) / 2;
+
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.drawImage(img, x, y, newWidth, newHeight);
+    };
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!prefersReducedMotion) {
+        let mm = gsap.matchMedia();
+        mm.add({
+            isDesktop: "(min-width: 1024px)",
+            isMobile: "(max-width: 1023px)"
+        }, (gsapContext) => {
+            const { isDesktop } = gsapContext.conditions;
+            canvas.width = isDesktop ? 1920 : 800;
+            canvas.height = isDesktop ? 1080 : 1200;
+
+            // Re-load images if breakpoint changes (to switch between desktop/mobile assets)
+            const folder = isDesktop ? "desktop" : "mobile";
+            const currentFolder = heroImages[0]?.src.includes("desktop") ? "desktop" : "mobile";
+
+            if (folder !== currentFolder) {
+                reloadHeroImages(folder).then(drawImage);
+            }
+
+            gsap.to(airship, {
+                frame: HERO_FRAME_COUNT - 1,
+                snap: "frame",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#hero-canvas-container",
+                    start: "top top",
+                    end: "+=300%",
+                    pin: true,
+                    scrub: 0.5,
+                },
+                onUpdate: drawImage
+            });
+            drawImage();
+        });
+    } else {
+        drawImage();
+    }
 
     gsap.from(".hero-title", {
         y: 100,
@@ -219,7 +285,7 @@ function initAnimations() {
     });
 
     // Responsive Animations with matchMedia
-    let mm = gsap.matchMedia();
+    let mmAnim = gsap.matchMedia();
 
     // Lazy Video Loading and Playback Control
     const lazyVideos = document.querySelectorAll('.lazy-video');
@@ -249,7 +315,7 @@ function initAnimations() {
         });
     }
 
-    mm.add("(min-width: 1024px)", () => {
+    mmAnim.add("(min-width: 1024px)", () => {
         // Horizontal Scroll
         const horizontalScroll = document.querySelector('.horizontal-scroll');
         if (horizontalScroll) {
@@ -273,7 +339,7 @@ function initAnimations() {
             yPercent: 0,
             ease: "none",
             scrollTrigger: {
-                trigger: ".hero",
+                trigger: "#hero-canvas-container",
                 start: "bottom bottom",
                 end: "bottom top",
                 scrub: true
