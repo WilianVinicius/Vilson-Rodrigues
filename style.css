@@ -37,15 +37,58 @@
 /* Navbar Styles */
 .navbar {
   background: transparent;
+  transition: background 0.5s ease, border-bottom 0.5s ease;
+  border-bottom: 1px solid transparent;
 }
+
+.navbar .nav-logo {
+  filter: brightness(0) invert(1);
+  transition: filter 0.5s ease;
+}
+
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.5s ease;
+}
+
+.navbar .nav-link:hover {
+  color: white;
+}
+
+.navbar .cta-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar .cta-link:hover {
+  color: #af6446; /* Ochre */
+}
+
+/* Scrolled State */
 .navbar.scrolled {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(242, 237, 222, 0.85); /* Linen */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
-.nav-logo {
-  filter: brightness(0) invert(1);
+
+.navbar.scrolled .nav-logo {
+  filter: brightness(0);
+}
+
+.navbar.scrolled .nav-link {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.navbar.scrolled .nav-link:hover {
+  color: #000000;
+}
+
+.navbar.scrolled .cta-link {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.navbar.scrolled .cta-link:hover {
+  color: #af6446;
 }
 /* Hamburger → X animation */
 .menu-open .hamburger-line:nth-child(1) {
@@ -122,8 +165,18 @@
 
 
 .whatsapp-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
   animation: pulseWhatsApp 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.whatsapp-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
 }
 
 @keyframes pulseWhatsApp {

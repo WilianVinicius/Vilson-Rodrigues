@@ -125,17 +125,27 @@ if (document.readyState === 'complete') {
 }
 
 function initAnimations() {
-    // Scroll-Aware Navbar Background
+    // Scroll-Aware Navbar & WhatsApp Button
     const navbar = document.getElementById('navbar');
-    if (navbar) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    }
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    const aboutSection = document.getElementById('about');
+
+    const onScroll = () => {
+        const threshold = aboutSection
+            ? aboutSection.getBoundingClientRect().top + window.scrollY - 1
+            : window.innerHeight;
+
+        if (window.scrollY >= threshold) {
+            navbar?.classList.add('scrolled');
+            whatsappBtn?.classList.add('visible');
+        } else {
+            navbar?.classList.remove('scrolled');
+            whatsappBtn?.classList.remove('visible');
+        }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Initial check
 
     // Interactive Mobile Menu Toggle with Hamburger Animation
     const menuToggle = document.getElementById('menu-toggle');
