@@ -26,7 +26,7 @@ const portfolioImages = [
     '/img6.png', '/img7.png', '/img8.png', '/img9.png', '/img10.png'
 ];
 
-const HERO_FRAME_COUNT = 100;
+const HERO_FRAME_COUNT = 75;
 const heroImages = [];
 
 let isLoaded = false;
@@ -90,32 +90,14 @@ async function preloadAssets() {
         img.src = src;
     });
 
-    // Load Hero Frames (Desktop by default or based on initial width)
-    const folder = window.innerWidth >= 1024 ? "desktop" : "mobile";
-    for (let i = 0; i < HERO_FRAME_COUNT; i++) {
+    // Load Hero Frames
+    for (let i = 1; i <= HERO_FRAME_COUNT; i++) {
         const img = new Image();
         img.onload = updateProgress;
         img.onerror = updateProgress;
-        img.src = `/assets/hero-frames/${folder}/${(i + 1).toString().padStart(4, "0")}.webp`;
+        img.src = `/assets/hero-frames/frame-${i}.jpg`;
         heroImages.push(img);
     }
-}
-
-// Helper to load a new set of hero images (on resize)
-async function reloadHeroImages(folder) {
-    heroImages.length = 0; // Clear array
-    const loadPromises = [];
-    for (let i = 0; i < HERO_FRAME_COUNT; i++) {
-        const img = new Image();
-        const promise = new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-        });
-        img.src = `/assets/hero-frames/${folder}/${(i + 1).toString().padStart(4, "0")}.webp`;
-        heroImages.push(img);
-        loadPromises.push(promise);
-    }
-    await Promise.all(loadPromises);
 }
 
 if (document.readyState === 'complete') {
@@ -225,14 +207,6 @@ function initAnimations() {
             const { isDesktop } = gsapContext.conditions;
             canvas.width = isDesktop ? 1920 : 800;
             canvas.height = isDesktop ? 1080 : 1200;
-
-            // Re-load images if breakpoint changes (to switch between desktop/mobile assets)
-            const folder = isDesktop ? "desktop" : "mobile";
-            const currentFolder = heroImages[0]?.src.includes("desktop") ? "desktop" : "mobile";
-
-            if (folder !== currentFolder) {
-                reloadHeroImages(folder).then(drawImage);
-            }
 
             gsap.to(airship, {
                 frame: HERO_FRAME_COUNT - 1,
