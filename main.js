@@ -22,8 +22,8 @@ gsap.ticker.lagSmoothing(0);
 
 // Loading Screen & Asset Preloading
 const portfolioImages = [
-    '/img1.png', '/img2.png', '/img3.png', '/img4.png', '/img5.png',
-    '/img6.png', '/img7.png', '/img8.png', '/img9.png', '/img10.png'
+    '/projects/project-1.png', '/projects/project-2.png', '/projects/project-3.png', '/projects/project-4.png', '/projects/project-5.png',
+    '/projects/project-6.png', '/projects/project-7.png', '/projects/project-8.png', '/projects/project-9.png', '/projects/project-10.png'
 ];
 
 const HERO_FRAME_COUNT = 75;
@@ -91,12 +91,22 @@ async function preloadAssets() {
     });
 
     // Load Hero Frames
+    const heroFramePromises = [];
     for (let i = 1; i <= HERO_FRAME_COUNT; i++) {
         const img = new Image();
-        img.onload = updateProgress;
-        img.onerror = updateProgress;
+        const promise = new Promise((resolve) => {
+            img.onload = () => {
+                updateProgress();
+                resolve();
+            };
+            img.onerror = () => {
+                updateProgress();
+                resolve();
+            };
+        });
         img.src = `/assets/hero-frames/frame-${i}.jpg`;
-        heroImages.push(img);
+        heroImages[i-1] = img; // Ensure correct order
+        heroFramePromises.push(promise);
     }
 }
 
@@ -313,20 +323,35 @@ function initAnimations() {
                     pin: true,
                     scrub: 1,
                     invalidateOnRefresh: true,
+                    onUpdate: (self) => {
+                        // Progressively reveal project cards
+                        const cards = horizontalScroll.querySelectorAll('.project-card');
+                        const progress = self.progress;
+                        // cards.forEach((card, i) => { ... }); // Optional stagger/reveal logic
+                    }
                 }
             });
         }
 
-        // About Parallax
-        gsap.set("#about", { yPercent: 50 });
+        // Initial state for about section (hidden below hero)
+        gsap.set("#about", { y: "100vh" });
+
+        // About Reveal - Cleaner transition over the hero
         gsap.to("#about", {
-            yPercent: 0,
+            y: 0,
             ease: "none",
             scrollTrigger: {
                 trigger: "#hero-canvas-container",
                 start: "bottom bottom",
-                end: "bottom top",
-                scrub: true
+                end: "+=100%",
+                scrub: true,
+                onUpdate: (self) => {
+                    // Fade out hero content as about section slides up
+                    gsap.set(".hero-title, .hero-sub, .hero-cta, .hero-scroll-indicator", {
+                        opacity: 1 - self.progress,
+                        y: -100 * self.progress
+                    });
+                }
             }
         });
     });
