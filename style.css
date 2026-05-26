@@ -12,10 +12,31 @@
 @layer base {
   html {
     scroll-behavior: initial;
+    background-color: #f2edde;
   }
 
   body {
     @apply bg-linen text-charcoal;
+    background-color: #f2edde;
+    min-height: 100vh;
+  }
+}
+
+#floating-container {
+  margin: 4vh auto;
+  width: 94vw;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  overflow: hidden;
+  background-color: #f2edde;
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  #floating-container {
+    margin: 2vh auto;
+    width: 96vw;
   }
 }
 
@@ -39,6 +60,17 @@
   background: transparent;
   transition: background 0.5s ease, border-bottom 0.5s ease;
   border-bottom: 1px solid transparent;
+  width: 94vw;
+  left: 3vw;
+  top: 4vh;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 96vw;
+    left: 2vw;
+    top: 2vh;
+  }
 }
 
 .navbar .nav-logo {
@@ -181,6 +213,15 @@
   transition: opacity 0.5s ease, transform 0.5s ease;
   box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
   animation: pulseWhatsApp 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  right: calc(3vw + 24px) !important;
+  bottom: calc(4vh + 24px) !important;
+}
+
+@media (max-width: 768px) {
+  .whatsapp-btn {
+    right: calc(2vw + 16px) !important;
+    bottom: calc(2vh + 16px) !important;
+  }
 }
 
 .whatsapp-btn.visible {

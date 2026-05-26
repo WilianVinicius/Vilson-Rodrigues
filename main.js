@@ -342,8 +342,8 @@ function initAnimations() {
             ease: "none",
             scrollTrigger: {
                 trigger: "#hero-canvas-container",
-                start: "bottom bottom",
-                end: "+=100%",
+                start: "200% top",
+                end: "300% top",
                 scrub: true,
                 onUpdate: (self) => {
                     // Fade out hero content as about section slides up
