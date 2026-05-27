@@ -86,11 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #loader-logo {
-  font-family: "Georgia", serif;
-  font-size: 2rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+  display: block;
   transform: translateY(100%);
 }
 

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Asset List (To be filled with real URLs later)
-    const assetsToLoad = []; // Start empty for base phase
+    const assetsToLoad = ["logo.png"]; // Include the logo in preloading
 
     let loadedCount = 0;
     const totalAssets = assetsToLoad.length;

@@ -20,7 +20,7 @@
     <!-- Tela de Carregamento (Loader) -->
     <div id="loader">
         <div id="loader-logo-container">
-            <div id="loader-logo">VILSON RODRIGUES</div>
+            <img src="logo.png" alt="Vilson Rodrigues" id="loader-logo" class="h-12 brightness-0 invert">
         </div>
 
         <!-- Barra de Progresso -->
@@ -31,9 +31,12 @@
     </div>
 
     <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 flex items-center justify-between p-10 pointer-events-none opacity-0">
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 flex items-center justify-between py-6 px-10 pointer-events-none opacity-0">
         <!-- Logo / Nome -->
-        <div class="font-serif text-xl tracking-widest uppercase">Vilson Rodrigues</div>
+        <div class="flex items-center gap-4">
+            <img src="logo.png" alt="Vilson Rodrigues" class="h-6">
+            <div class="font-serif text-lg tracking-widest uppercase hidden sm:block">Vilson Rodrigues</div>
+        </div>
 
         <!-- Links de Navegação (Placeholder) -->
         <div class="hidden md:flex gap-10">
