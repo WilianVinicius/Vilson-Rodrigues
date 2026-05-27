@@ -6,10 +6,12 @@
     <title>Vilson Rodrigues | Construção de Alto Padrão</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body class="bg-ochre text-charcoal antialiased overflow-hidden">
+    <!-- Grain Overlay -->
+    <div class="grain-overlay pointer-events-none fixed inset-0 z-[999] opacity-[0.03]"></div>
 
     <!-- Preloader -->
     <div id="loader" class="fixed inset-0 z-[100] bg-linen flex flex-col justify-center items-center">
@@ -220,31 +222,59 @@
         </section>
 
         <!-- Testimonials -->
-        <section id="testimonials" class="bg-ochre py-40 px-8 md:px-20">
-            <div class="max-w-[1440px] mx-auto text-center mb-24">
-                <h2 class="text-sm font-display tracking-[0.2em] mb-12">CREDIBILIDADE NO CANTEIRO</h2>
-                <h3 class="text-[clamp(2.5rem,5vw,60px)] leading-[1.1] font-display font-black">QUEM CONSTRÓI COM TÉCNICA,<br><span class="italic text-charcoal/40">NÃO PRECISA GRITAR.</span></h3>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1440px] mx-auto">
-                <div class="p-6 md:p-12 border border-charcoal/5 flex flex-col justify-between">
-                    <p class="font-serif text-lg italic mb-12">"O Vilson resolveu em semanas o que outros levaram meses. Foco total no resultado."</p>
-                    <div>
-                        <p class="font-display font-bold text-xs tracking-widest">RICARDO ALMEIDA</p>
-                        <p class="text-[10px] opacity-40">Santa Cruz do Sul</p>
+        <section id="testimonials" class="bg-ochre py-48 px-8 md:px-20">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-32 gap-12">
+                    <div class="max-w-2xl">
+                        <h2 class="text-[10px] font-display tracking-[0.4em] mb-10 opacity-40 uppercase">CREDIBILIDADE NO CANTEIRO</h2>
+                        <h3 class="text-[clamp(2.5rem,6vw,72px)] leading-[1] font-display font-black">QUEM CONSTRÓI COM TÉCNICA,<br><span class="italic text-charcoal/30">NÃO PRECISA GRITAR.</span></h3>
+                    </div>
+                    <div class="hidden lg:block pb-4">
+                        <div class="w-24 h-px bg-charcoal/20"></div>
                     </div>
                 </div>
-                <div class="p-6 md:p-12 border border-charcoal/5 flex flex-col justify-between">
-                    <p class="font-serif text-lg italic mb-12">"Acabamento de alto nível. Ele entende de técnica e de material como poucos profissionais."</p>
-                    <div>
-                        <p class="font-display font-bold text-xs tracking-widest">JULIANA SILVA</p>
-                        <p class="text-[10px] opacity-40">Vera Cruz</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
+                    <div class="testimonial-card group">
+                        <div class="mb-10 text-ochre/40 transition-colors duration-500 group-hover:text-ochre">
+                            <svg width="40" height="32" viewBox="0 0 40 32" fill="currentColor"><path d="M0 32V17.0667C0 11.7333 1.28889 7.33333 3.86667 3.86667C6.44444 0.4 10.3111 -1.11111 15.4667 -0.666667V6.66667C12.8 -0.666667 10.9333 0.933333 9.86667 3.46667C8.8 6 8.26667 8.66667 8.26667 11.4667H15.4667V32H0ZM24.5333 32V17.0667C24.5333 11.7333 25.8222 7.33333 28.4 3.86667C30.9778 0.4 34.8444 -1.11111 40 -0.666667V6.66667C37.3333 -0.666667 35.4667 0.933333 34.4 3.46667C33.3333 6 32.8 8.66667 32.8 11.4667H40V32H24.5333Z"/></svg>
+                        </div>
+                        <p class="font-serif text-2xl leading-relaxed mb-12 opacity-80 group-hover:opacity-100 transition-opacity duration-500">"O Vilson resolveu em semanas o que outros levaram meses. Foco total no resultado."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-px bg-charcoal/20"></div>
+                            <div>
+                                <p class="font-display font-bold text-xs tracking-widest">RICARDO ALMEIDA</p>
+                                <p class="text-[9px] opacity-30 tracking-widest uppercase mt-1">Santa Cruz do Sul</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="p-6 md:p-12 border border-charcoal/5 flex flex-col justify-between">
-                    <p class="font-serif text-lg italic mb-12">"Honesto no preço e impecável na entrega. É a segurança que todo dono de obra procura."</p>
-                    <div>
-                        <p class="font-display font-bold text-xs tracking-widest">MARCOS ROSA</p>
-                        <p class="text-[10px] opacity-40">Santa Cruz do Sul</p>
+
+                    <div class="testimonial-card group">
+                        <div class="mb-10 text-ochre/40 transition-colors duration-500 group-hover:text-ochre">
+                            <svg width="40" height="32" viewBox="0 0 40 32" fill="currentColor"><path d="M0 32V17.0667C0 11.7333 1.28889 7.33333 3.86667 3.86667C6.44444 0.4 10.3111 -1.11111 15.4667 -0.666667V6.66667C12.8 -0.666667 10.9333 0.933333 9.86667 3.46667C8.8 6 8.26667 8.66667 8.26667 11.4667H15.4667V32H0ZM24.5333 32V17.0667C24.5333 11.7333 25.8222 7.33333 28.4 3.86667C30.9778 0.4 34.8444 -1.11111 40 -0.666667V6.66667C37.3333 -0.666667 35.4667 0.933333 34.4 3.46667C33.3333 6 32.8 8.66667 32.8 11.4667H40V32H24.5333Z"/></svg>
+                        </div>
+                        <p class="font-serif text-2xl leading-relaxed mb-12 opacity-80 group-hover:opacity-100 transition-opacity duration-500">"Acabamento de alto nível. Ele entende de técnica e de material como poucos profissionais."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-px bg-charcoal/20"></div>
+                            <div>
+                                <p class="font-display font-bold text-xs tracking-widest">JULIANA SILVA</p>
+                                <p class="text-[9px] opacity-30 tracking-widest uppercase mt-1">Vera Cruz</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card group">
+                        <div class="mb-10 text-ochre/40 transition-colors duration-500 group-hover:text-ochre">
+                            <svg width="40" height="32" viewBox="0 0 40 32" fill="currentColor"><path d="M0 32V17.0667C0 11.7333 1.28889 7.33333 3.86667 3.86667C6.44444 0.4 10.3111 -1.11111 15.4667 -0.666667V6.66667C12.8 -0.666667 10.9333 0.933333 9.86667 3.46667C8.8 6 8.26667 8.66667 8.26667 11.4667H15.4667V32H0ZM24.5333 32V17.0667C24.5333 11.7333 25.8222 7.33333 28.4 3.86667C30.9778 0.4 34.8444 -1.11111 40 -0.666667V6.66667C37.3333 -0.666667 35.4667 0.933333 34.4 3.46667C33.3333 6 32.8 8.66667 32.8 11.4667H40V32H24.5333Z"/></svg>
+                        </div>
+                        <p class="font-serif text-2xl leading-relaxed mb-12 opacity-80 group-hover:opacity-100 transition-opacity duration-500">"Honesto no preço e impecável na entrega. É a segurança que todo dono de obra procura."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-px bg-charcoal/20"></div>
+                            <div>
+                                <p class="font-display font-bold text-xs tracking-widest">MARCOS ROSA</p>
+                                <p class="text-[9px] opacity-30 tracking-widest uppercase mt-1">Santa Cruz do Sul</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
