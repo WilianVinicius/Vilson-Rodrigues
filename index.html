@@ -5,368 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vilson Rodrigues — Construção de Alto Padrão</title>
 
-    <!-- Google Fonts: Inter e Georgia (substituto de Merlo) -->
+    <!-- Google Fonts: Inter e Georgia -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;900&family=Georgia&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS v4 via CDN (Beta/Early access approach for v4) -->
+    <!-- Tailwind CSS v4 via CDN -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-pale-linen text-charcoal-ink font-sans antialiased overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-[95] transition-all duration-500 py-6 px-6 md:px-12 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="#" class="navbar-logo">
-            <img src="logo.png" alt="Vilson Rodrigues" class="h-8 md:h-10 brightness-0 invert opacity-100 transition-opacity duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span class="hidden font-serif text-white text-xl tracking-widest">VILSON RODRIGUES</span>
-        </a>
-
-        <!-- Links Desktop -->
-        <div class="hidden lg:flex items-center gap-12">
-            <a href="#about" class="text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 hover:text-earthy-ochre transition-colors">SOBRE</a>
-            <a href="#projects" class="text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 hover:text-earthy-ochre transition-colors">OBRAS</a>
-            <a href="#testimonials" class="text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 hover:text-earthy-ochre transition-colors">AVALIAÇÕES</a>
-            <a href="#contact" class="text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 hover:text-earthy-ochre transition-colors">CONTATO</a>
-        </div>
-
-        <!-- Botão Orçamento & Mobile Toggle -->
-        <div class="flex items-center gap-8">
-            <a href="https://wa.me/5551995114411" target="_blank" class="hidden md:block border border-white/20 px-6 py-2 text-[10px] uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all duration-300">ORÇAMENTO</a>
-
-            <button id="menu-toggle" class="relative z-[100] w-8 h-5 flex flex-col justify-between group cursor-pointer" aria-label="Menu">
-                <span class="w-full h-[1px] bg-white transition-all duration-300 origin-center"></span>
-                <span class="w-full h-[1px] bg-white transition-all duration-300"></span>
-                <span class="w-full h-[1px] bg-white transition-all duration-300 origin-center"></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Menu Mobile Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-[90] bg-charcoal-ink translate-y-full flex flex-col justify-between p-12 transition-transform duration-700 ease-[expo.inOut]">
-        <div class="flex flex-col gap-8 mt-24">
-            <a href="#about" class="mobile-link text-4xl md:text-6xl font-black text-white hover:text-earthy-ochre transition-colors">SOBRE</a>
-            <a href="#projects" class="mobile-link text-4xl md:text-6xl font-black text-white hover:text-earthy-ochre transition-colors">OBRAS</a>
-            <a href="#testimonials" class="mobile-link text-4xl md:text-6xl font-black text-white hover:text-earthy-ochre transition-colors">AVALIAÇÕES</a>
-            <a href="#contact" class="mobile-link text-4xl md:text-6xl font-black text-white hover:text-earthy-ochre transition-colors">CONTATO</a>
-        </div>
-
-        <div class="border-t border-white/5 pt-8">
-            <p class="text-[10px] uppercase tracking-[0.3em] text-white/30">Vilson Rodrigues — Construção de Alto Padrão</p>
-        </div>
-    </div>
-
     <!-- Tela de Carregamento (Loader) -->
-    <div id="loader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-charcoal-ink text-pale-linen">
-        <div id="loader-logo-container" class="overflow-hidden mb-8">
-            <!-- Logo Placeholder (SVG) -->
-            <div id="loader-logo" class="translate-y-full">
-                <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="currentColor" font-family="Georgia" font-size="24">VILSON</text>
-                </svg>
-            </div>
+    <div id="loader">
+        <div id="loader-logo-container">
+            <div id="loader-logo">VILSON RODRIGUES</div>
         </div>
 
         <!-- Barra de Progresso -->
-        <div class="w-48 h-[1px] bg-white/10 relative">
-            <div id="progress-bar" class="absolute top-0 left-0 h-full bg-earthy-ochre w-0 transition-all duration-300"></div>
+        <div class="progress-container">
+            <div id="progress-bar"></div>
         </div>
-        <div id="progress-text" class="mt-4 font-mono text-[10px] tracking-widest opacity-50">0%</div>
+        <div id="progress-text">0%</div>
     </div>
 
-    <!-- Conteúdo Principal (será preenchido nos próximos passos) -->
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 flex items-center justify-between p-10 pointer-events-none opacity-0">
+        <!-- Logo / Nome -->
+        <div class="font-serif text-xl tracking-widest uppercase">Vilson Rodrigues</div>
+
+        <!-- Links de Navegação (Placeholder) -->
+        <div class="hidden md:flex gap-10">
+            <a href="#" class="text-[10px] uppercase tracking-widest hover:text-earthy-ochre transition-colors">Sobre</a>
+            <a href="#" class="text-[10px] uppercase tracking-widest hover:text-earthy-ochre transition-colors">Obras</a>
+            <a href="#" class="text-[10px] uppercase tracking-widest hover:text-earthy-ochre transition-colors">Contato</a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
     <main id="main-content" class="opacity-0">
-
-        <!-- Hero Section -->
-        <section id="hero" class="relative w-full h-screen overflow-hidden bg-charcoal-ink">
-            <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
-
-            <!-- Overlay Escuro -->
-            <div class="absolute inset-0 bg-black/40"></div>
-
-            <!-- Conteúdo Hero -->
-            <div class="relative z-10 h-full flex flex-col justify-center px-6 md:px-12 lg:px-24 text-white">
-                <div class="max-w-4xl">
-                    <span class="block text-[12px] tracking-[0.3em] opacity-60 uppercase mb-6 font-medium">CONSTRUÇÃO DE ALTO PADRÃO — VILSON RODRIGUES</span>
-                    <h1 class="text-[clamp(3rem,8vw,90px)] font-black leading-[0.9] uppercase mb-8 text-shadow-subtle">
-                        CADA TIJOLO,<br>UMA PROMESSA<br>CUMPRIDA.
-                    </h1>
-                    <p class="text-base md:text-lg opacity-70 mb-10 max-w-lg font-light">+15 anos transformando projetos em realidade</p>
-
-                    <a href="https://wa.me/5551995114411" target="_blank" class="inline-flex items-center gap-4 border border-white/20 px-8 py-4 text-[12px] font-bold tracking-widest uppercase hover:bg-earthy-ochre hover:border-earthy-ochre transition-all duration-500">
-                        SOLICITAR ORÇAMENTO →
-                    </a>
-                </div>
-
-                <!-- Indicador de Scroll -->
-                <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
-                    <span class="text-[10px] tracking-[0.3em] uppercase opacity-60">DESLIZE</span>
-                    <div class="w-[1px] h-12 bg-white/20 relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-1/4 bg-white animate-scroll-indicator"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="relative z-20 min-h-screen bg-pale-linen py-24 md:py-32 px-6 md:px-12 lg:px-24">
-            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                <!-- Coluna Texto -->
-                <div class="order-2 lg:order-1">
-                    <span class="block text-[10px] tracking-[0.3em] opacity-60 uppercase mb-6 font-medium">SOBRE NÓS</span>
-                    <h2 class="text-4xl md:text-6xl font-black leading-[1.1] uppercase mb-8">
-                        DÉCADAS DE EXPERIÊNCIA<br>EM CADA DETALHE.
-                    </h2>
-                    <p class="text-lg opacity-80 mb-12 max-w-xl font-light">
-                        Sou Vilson Rodrigues, pedreiro com mais de 15 anos de experiência em construção civil. Cada obra que entrego carrega meu nome e minha reputação — por isso, prazo, qualidade e honestidade são inegociáveis.
-                    </p>
-
-                    <!-- Contadores -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-12">
-                        <div class="stat-item border-left border-black/10 pl-8 py-4 transition-standard group hover:border-earthy-ochre hover:translate-x-2">
-                            <div class="text-4xl font-black mb-1" data-target="300" data-suffix="+">0</div>
-                            <div class="text-[10px] tracking-widest opacity-60 uppercase">Obras Entregues</div>
-                        </div>
-                        <div class="stat-item border-left border-black/10 pl-8 py-4 transition-standard group hover:border-earthy-ochre hover:translate-x-2">
-                            <div class="text-4xl font-black mb-1" data-target="15" data-suffix="+">0</div>
-                            <div class="text-[10px] tracking-widest opacity-60 uppercase">Anos de Experiência</div>
-                        </div>
-                        <div class="stat-item border-left border-black/10 pl-8 py-4 transition-standard group hover:border-earthy-ochre hover:translate-x-2">
-                            <div class="text-4xl font-black mb-1" data-target="98" data-suffix="%">0</div>
-                            <div class="text-[10px] tracking-widest opacity-60 uppercase">Clientes Satisfeitos</div>
-                        </div>
-                        <div class="stat-item border-left border-black/10 pl-8 py-4 transition-standard group hover:border-earthy-ochre hover:translate-x-2">
-                            <div class="text-4xl font-black mb-1" data-target="50" data-suffix="+">0</div>
-                            <div class="text-[10px] tracking-widest opacity-60 uppercase">Projetos em Andamento</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Coluna Imagem -->
-                <div class="order-1 lg:order-2">
-                    <div class="relative aspect-[4/5] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1541976590-713941fbc1c0?q=80&w=1200&auto=format&fit=crop" alt="Construção" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 duration-1000">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="relative z-20 bg-earthy-ochre overflow-hidden">
-            <div id="projects-pin" class="flex flex-col lg:flex-row items-center h-full min-h-screen py-24 lg:py-0 px-6 md:px-12 lg:px-24">
-
-                <!-- Intro Card -->
-                <div class="intro-card w-full lg:w-[40vw] flex-shrink-0 mb-16 lg:mb-0 lg:pr-24">
-                    <span class="block text-[10px] tracking-[0.3em] text-white/60 uppercase mb-6 font-medium">NOSSAS OBRAS</span>
-                    <h2 class="text-4xl md:text-6xl font-black leading-[1.1] text-white uppercase mb-8">
-                        PROJETOS QUE<br>FALAM<br>POR SI.
-                    </h2>
-                    <p class="text-lg text-white/80 max-w-md font-light">
-                        Do alicerce ao acabamento, cada obra reflete o cuidado e a precisão que só vêm com anos de experiência.
-                    </p>
-                </div>
-
-                <!-- Projects Wrapper (para o horizontal scroll) -->
-                <div id="projects-horizontal" class="flex flex-col lg:flex-row gap-8 lg:gap-0">
-
-                    <!-- Card 1 -->
-                    <div class="project-card relative w-full lg:w-[65vw] h-[45vh] md:h-[60vh] lg:h-[75vh] lg:mr-24 flex-shrink-0 group overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop" alt="Residencial" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
-                        <div class="project-info absolute inset-x-0 bottom-0 p-8 lg:p-12 bg-gradient-to-t from-black/80 to-transparent lg:translate-y-full lg:group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="text-[9px] tracking-[0.3em] text-earthy-ochre font-black uppercase mb-2 block">01 // RESIDENCIAL</span>
-                            <h3 class="text-2xl md:text-3xl font-black text-white uppercase">Mansão Alphaville</h3>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="project-card relative w-full lg:w-[65vw] h-[45vh] md:h-[60vh] lg:h-[75vh] lg:mr-24 flex-shrink-0 group overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=1200&auto=format&fit=crop" alt="Estruturas" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
-                        <div class="project-info absolute inset-x-0 bottom-0 p-8 lg:p-12 bg-gradient-to-t from-black/80 to-transparent lg:translate-y-full lg:group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="text-[9px] tracking-[0.3em] text-earthy-ochre font-black uppercase mb-2 block">02 // ESTRUTURAS</span>
-                            <h3 class="text-2xl md:text-3xl font-black text-white uppercase">Complexo Comercial</h3>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="project-card relative w-full lg:w-[65vw] h-[45vh] md:h-[60vh] lg:h-[75vh] lg:mr-24 flex-shrink-0 group overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop" alt="Interiores" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
-                        <div class="project-info absolute inset-x-0 bottom-0 p-8 lg:p-12 bg-gradient-to-t from-black/80 to-transparent lg:translate-y-full lg:group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="text-[9px] tracking-[0.3em] text-earthy-ochre font-black uppercase mb-2 block">03 // INTERIORES</span>
-                            <h3 class="text-2xl md:text-3xl font-black text-white uppercase">Loft Industrial</h3>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials" class="relative z-20 bg-charcoal-ink py-24 md:py-32 px-6 md:px-12 lg:px-24">
-            <div class="mb-16">
-                <span class="block text-[10px] tracking-[0.3em] text-white/60 uppercase mb-6 font-medium">AVALIAÇÕES</span>
-                <h2 class="text-4xl md:text-6xl font-black leading-[1.1] text-white uppercase">
-                    O QUE NOSSOS<br>CLIENTES DIZEM.
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="testimonial-card p-8 md:p-12 border border-white/10 bg-white/[0.02] flex flex-col justify-between group hover:bg-white/5 transition-standard">
-                    <div>
-                        <div class="flex gap-1 mb-8">
-                            <!-- Estrelas -->
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                        </div>
-                        <p class="font-serif text-lg md:text-xl text-white/80 italic leading-relaxed mb-12">
-                            "Contratei o Vilson para reformar minha casa inteira. Ele cumpriu cada prazo, resolveu imprevistos sem me estressar e o resultado foi além do que eu esperava. Recomendo de olhos fechados."
-                        </p>
-                    </div>
-                    <div>
-                        <span class="block text-[12px] tracking-widest text-white/60 uppercase font-medium">Ana Clara S.</span>
-                        <span class="block text-[10px] tracking-widest text-white/30 uppercase mt-1">São Leopoldo / RS</span>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="testimonial-card p-8 md:p-12 border border-white/10 bg-white/[0.02] flex flex-col justify-between group hover:bg-white/5 transition-standard">
-                    <div>
-                        <div class="flex gap-1 mb-8">
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                        </div>
-                        <p class="font-serif text-lg md:text-xl text-white/80 italic leading-relaxed mb-12">
-                            "Profissional de verdade. Meu galpão foi entregue no prazo, dentro do orçamento e com acabamento impecável. Já indiquei para outros empresários da região."
-                        </p>
-                    </div>
-                    <div>
-                        <span class="block text-[12px] tracking-widest text-white/60 uppercase font-medium">Marcos T.</span>
-                        <span class="block text-[10px] tracking-widest text-white/30 uppercase mt-1">Lajeado / RS</span>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="testimonial-card p-8 md:p-12 border border-white/10 bg-white/[0.02] flex flex-col justify-between group hover:bg-white/5 transition-standard">
-                    <div>
-                        <div class="flex gap-1 mb-8">
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                            <span class="text-earthy-ochre text-lg">★</span>
-                        </div>
-                        <p class="font-serif text-lg md:text-xl text-white/80 italic leading-relaxed mb-12">
-                            "O Vilson tem uma ética de trabalho rara. Transparente, pontual e cuidadoso. Nossa obra ficou muito acima do esperado."
-                        </p>
-                    </div>
-                    <div>
-                        <span class="block text-[12px] tracking-widest text-white/60 uppercase font-medium">Família Rech</span>
-                        <span class="block text-[10px] tracking-widest text-white/30 uppercase mt-1">Santa Cruz do Sul / RS</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Vídeo CTA -->
-        <section class="relative z-20 w-full h-[60vh] md:h-[80vh] overflow-hidden">
-            <video class="lazy-video absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
-                <source data-src="https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-house-building-construction-42775-large.mp4" type="video/mp4">
-            </video>
-
-            <div class="absolute inset-0 bg-black/55"></div>
-
-            <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 md:px-12">
-                <h2 class="text-[clamp(2.5rem,6vw,70px)] font-black text-white leading-tight uppercase mb-6 text-shadow-subtle">
-                    CONSTRUÍMOS MAIS<br>QUE PAREDES.
-                </h2>
-                <p class="text-lg md:text-xl text-white/80 max-w-2xl font-light">
-                    Construímos histórias, lares e o futuro das famílias que confiam no nosso trabalho.
-                </p>
-            </div>
-        </section>
-
-        <!-- Seção Contato -->
-        <section id="contact" class="relative z-20 bg-black py-24 md:py-32 px-6 md:px-12 lg:px-24">
-            <div class="flex flex-col xl:flex-row justify-between gap-16">
-
-                <!-- Bloco Esquerda (Imagem + Texto) -->
-                <div class="flex flex-col md:flex-row items-start md:items-center gap-10">
-                    <div class="relative w-full md:w-56 h-56 overflow-hidden border border-white/10 group">
-                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=600&auto=format&fit=crop" alt="Vilson Rodrigues" class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700"></div>
-                    </div>
-
-                    <div>
-                        <span class="block text-[10px] tracking-[0.3em] text-white/60 uppercase mb-4 font-medium">VILSON RODRIGUES</span>
-                        <h2 class="text-[clamp(2rem,4vw,44px)] font-black text-white leading-[1.1] uppercase mb-4">
-                            COMPROMISSO COM<br>PRAZOS E QUALIDADE.
-                        </h2>
-                        <span class="block text-[10px] tracking-[0.3em] text-white/60 uppercase">VAMOS CONSTRUIR ALGO INCRÍVEL JUNTOS?</span>
-                    </div>
-                </div>
-
-                <!-- Bloco Direita (CTA) -->
-                <div class="flex flex-col items-start xl:items-end justify-center flex-shrink-0">
-                    <a href="https://wa.me/5551995114411" target="_blank" class="text-3xl md:text-5xl font-black text-white hover:text-earthy-ochre transition-colors mb-8">
-                        (51) 99511-4411
-                    </a>
-                    <a href="https://wa.me/5551995114411" target="_blank" class="w-full xl:w-auto text-center border border-white px-10 py-5 text-[12px] font-bold tracking-[0.2em] text-white uppercase hover:bg-white hover:text-black transition-all duration-500">
-                        SOLICITAR ORÇAMENTO
-                    </a>
-                </div>
-
-            </div>
-        </section>
+        <!-- As seções serão adicionadas posteriormente -->
     </main>
-
-    <!-- Footer -->
-    <footer class="relative z-20 bg-charcoal-ink pt-24 pb-12 px-6 md:px-12 lg:px-24">
-        <div class="w-full overflow-hidden text-center mb-16">
-            <h2 class="footer-name uppercase font-black tracking-tighter leading-none whitespace-nowrap opacity-[0.05] hover:opacity-20 transition-opacity duration-700 text-[clamp(8vw,15vw,20vw)] text-white">
-                VILSON RODRIGUES
-            </h2>
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-between items-center gap-12 mb-20">
-            <!-- Logo Footer -->
-            <a href="#" class="footer-logo">
-                <img src="logo.png" alt="Vilson Rodrigues" class="h-10 brightness-0 invert opacity-100" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="hidden font-serif text-white text-2xl tracking-widest">VILSON RODRIGUES</span>
-            </a>
-
-            <!-- Links Footer -->
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-                <a href="#about" class="text-[14px] font-light uppercase tracking-widest text-white/60 hover:text-white transition-colors">SOBRE</a>
-                <a href="#projects" class="text-[14px] font-light uppercase tracking-widest text-white/60 hover:text-white transition-colors">OBRAS</a>
-                <a href="#testimonials" class="text-[14px] font-light uppercase tracking-widest text-white/60 hover:text-white transition-colors">AVALIAÇÕES</a>
-                <a href="#contact" class="text-[14px] font-light uppercase tracking-widest text-white/60 hover:text-white transition-colors">CONTATO</a>
-            </div>
-        </div>
-
-        <!-- Barra de Créditos -->
-        <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between gap-4 text-center md:text-left">
-            <p class="text-[11px] uppercase tracking-widest text-white/30">© 2024 Vilson Rodrigues. Todos os direitos reservados.</p>
-            <p class="text-[11px] uppercase tracking-widest text-white/30 italic">Qualidade que constrói confiança.</p>
-        </div>
-    </footer>
-
-    <!-- Botão WhatsApp Flutuante -->
-    <a href="https://wa.me/5551995114411" target="_blank" id="whatsapp-float" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[80] bg-[#25D366] p-3 md:p-4 rounded-full shadow-2xl transition-transform hover:scale-110 active:scale-95">
-        <svg class="w-6 h-6 md:w-8 md:h-8 text-white fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.52.909 3.125 1.388 4.773 1.389h.005c5.448 0 9.881-4.434 9.884-9.884.002-2.641-1.029-5.124-2.903-7.001-1.874-1.876-4.359-2.903-6.996-2.903-5.449 0-9.883 4.433-9.885 9.883-.001 1.745.453 3.441 1.316 4.921l-.995 3.637 3.806-.998zm10.746-6.615c-.295-.147-1.745-.862-2.015-.96-.269-.099-.465-.147-.661.148-.196.295-.759.959-.93 1.156-.172.196-.344.221-.638.074-.295-.148-1.246-.459-2.373-1.464-.877-.782-1.468-1.747-1.64-2.042-.172-.295-.018-.454.13-.601.133-.133.295-.344.442-.516.148-.172.196-.295.295-.492.099-.196.05-.369-.025-.517-.074-.147-.661-1.596-.906-2.189-.239-.575-.48-.497-.661-.506-.171-.008-.368-.01-.563-.01-.196 0-.515.074-.784.369-.27.295-1.03 1.008-1.03 2.459 0 1.451 1.055 2.852 1.202 3.049.148.197 2.077 3.172 5.031 4.449.702.304 1.251.486 1.678.622.705.225 1.346.193 1.854.117.565-.084 1.745-.713 1.991-1.402.245-.689.245-1.278.172-1.402-.074-.123-.269-.196-.563-.344z"/>
-        </svg>
-    </a>
 
     <!-- Scripts -->
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     <!-- Lenis (Smooth Scroll) -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
