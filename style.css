@@ -1,0 +1,169 @@
+/* Base Styles */
+:root {
+    --color-earthy-ochre: #af6446;
+    --color-pale-linen: #f2edde;
+    --color-charcoal-ink: #0d0d0d;
+}
+
+body {
+    background-color: var(--color-pale-linen);
+    font-family: 'Inter', sans-serif;
+}
+
+.font-merlo {
+    font-family: 'Georgia', serif;
+}
+
+/* Grain Overlay */
+.grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Navbar */
+.navbar {
+    background: transparent;
+    transition: background 0.5s, border-bottom 0.5s;
+    border-bottom: 1px solid transparent;
+}
+
+.navbar .nav-logo {
+    filter: brightness(0) invert(1);
+    transition: filter 0.5s;
+}
+
+.navbar .nav-link {
+    color: #fff;
+    opacity: 0.8;
+    transition: color 0.5s, opacity 0.5s;
+}
+
+.navbar .nav-link:hover, .navbar .cta-link {
+    opacity: 1;
+}
+
+.navbar .hamburger-line {
+    background-color: #fff;
+    transition: background-color 0.5s, transform 0.5s, opacity 0.5s;
+}
+
+/* Navbar Scrolled State */
+.navbar.scrolled {
+    background: var(--color-pale-linen);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.navbar.scrolled .nav-link {
+    color: var(--color-charcoal-ink);
+    opacity: 0.6;
+}
+
+.navbar.scrolled .nav-logo {
+    filter: brightness(0);
+}
+
+.navbar.scrolled .hamburger-line {
+    background-color: var(--color-charcoal-ink);
+}
+
+/* Mobile Menu Transitions */
+.menu-open .hamburger-line:first-child { transform: translateY(8px) rotate(45deg); }
+.menu-open .hamburger-line:nth-child(2) { opacity: 0; }
+.menu-open .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); width: 1.5rem !important; }
+
+/* Scroll Animation */
+.scroll-dot {
+    animation: scrollAnim 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes scrollAnim {
+    0% { transform: translateY(-100%); }
+    80% { transform: translateY(300%); }
+    100% { transform: translateY(300%); }
+}
+
+/* Horizontal Scroll Track */
+#projects-track {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+#projects-track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Custom Polish */
+.monumental-text {
+    opacity: 0.05;
+    transition: opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: default;
+    pointer-events: auto; /* Re-enable for hover effect */
+}
+
+.monumental-text:hover {
+    opacity: 0.2;
+}
+
+.whatsapp-btn {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.whatsapp-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.stat-item {
+    transition: all 0.5s ease;
+}
+
+/* Lenis */
+.lenis.lenis-smooth { height: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Video Section Refinements */
+.video-container {
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5);
+}
+
+.video-container video {
+    filter: grayscale(0.5) contrast(1.1);
+}
+
+.video-container:hover video {
+    filter: grayscale(0) contrast(1);
+}
+
+/* Canvas Layering */
+#hero-canvas {
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
