@@ -37,6 +37,13 @@
                 -webkit-text-stroke: 1px rgba(13, 13, 13, 0.2);
                 color: transparent;
             }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
         }
     </style>
 </head>
@@ -63,6 +70,7 @@
             </a>
             <div class="hidden md:flex items-center space-x-12 text-[10px] font-sans font-light uppercase tracking-widest">
                 <a href="#about" class="nav-link">SOBRE</a>
+                <a href="#expertise" class="nav-link">SERVIÇOS</a>
                 <a href="#projects" class="nav-link">OBRAS</a>
                 <a href="#testimonials" class="nav-link">AVALIAÇÕES</a>
                 <a href="#contact" class="nav-link">CONTATO</a>
@@ -80,6 +88,7 @@
     <div id="mobile-menu" class="fixed inset-0 z-[90] bg-charcoal flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500">
         <div class="flex flex-col space-y-8 text-center">
             <a href="#about" class="mobile-nav-link text-3xl font-sans font-black tracking-tighter text-linen">SOBRE</a>
+            <a href="#expertise" class="mobile-nav-link text-3xl font-sans font-black tracking-tighter text-linen">SERVIÇOS</a>
             <a href="#projects" class="mobile-nav-link text-3xl font-sans font-black tracking-tighter text-linen">OBRAS</a>
             <a href="#testimonials" class="mobile-nav-link text-3xl font-sans font-black tracking-tighter text-linen">AVALIAÇÕES</a>
             <a href="#contact" class="mobile-nav-link text-3xl font-sans font-black tracking-tighter text-linen">CONTATO</a>
@@ -96,7 +105,8 @@
     <main>
         <!-- Hero -->
         <section id="hero" class="relative bg-ochre h-screen overflow-hidden">
-            <div class="hero-visual absolute inset-0 bg-charcoal opacity-20 scale-110"></div>
+            <div class="hero-visual absolute inset-0 bg-[#1a1a1a] opacity-40 scale-110"></div>
+            <canvas id="hero-canvas" class="absolute inset-0 z-[5] opacity-20"></canvas>
             <div class="absolute inset-0 bg-charcoal/40"></div>
 
             <div class="container mx-auto px-6 md:px-12 h-full flex flex-col justify-center relative z-10 text-linen">
@@ -104,7 +114,7 @@
                     <h1 class="hero-title text-6xl md:text-8xl font-sans font-black tracking-tighter leading-[0.9] mb-8">
                         CONSTRUÇÃO<br>DE PRECISÃO.
                     </h1>
-                    <p class="hero-sub text-lg md:text-xl font-merlo max-w-xl opacity-80 leading-relaxed">
+                    <p class="hero-sub text-lg md:text-xl font-merlo max-w-xl opacity-80 leading-relaxed translate-y-4">
                         Projetos executados com rigor técnico por quem assina a entrega. Sem intermediários.
                     </p>
                     <div class="hero-cta mt-12 flex flex-wrap gap-4">
@@ -122,6 +132,45 @@
                 <span class="text-[8px] tracking-[0.4em] uppercase mb-4 text-linen">DESLIZE</span>
                 <div class="w-px h-12 bg-linen/20 relative overflow-hidden">
                     <div class="scroll-dot absolute top-0 left-0 w-full h-4 bg-linen"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commitment (Compromisso) -->
+        <section id="commitment" class="bg-linen py-24 md:py-32 px-6 md:px-12 border-b border-charcoal/5">
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                    <div class="commitment-item">
+                        <div class="text-ochre mb-6 flex justify-center md:justify-start">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" />
+                                <path d="M12 22V12" />
+                                <path d="M12 12L3 7" />
+                                <path d="M12 12l9-5" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-4">Canteiro Limpo</h4>
+                        <p class="text-sm opacity-50 font-merlo">Organização é segurança. Entregamos uma obra habitável em cada etapa.</p>
+                    </div>
+                    <div class="commitment-item">
+                        <div class="text-ochre mb-6 flex justify-center md:justify-start">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-4">Segurança Rigorosa</h4>
+                        <p class="text-sm opacity-50 font-merlo">Uso total de EPIs e cumprimento estrito das normas de segurança do trabalho.</p>
+                    </div>
+                    <div class="commitment-item">
+                        <div class="text-ochre mb-6 flex justify-center md:justify-start">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xs font-bold tracking-[0.2em] uppercase mb-4">Pontualidade</h4>
+                        <p class="text-sm opacity-50 font-merlo">Respeito ao cronograma físico. O prazo prometido é o prazo cumprido.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -159,46 +208,246 @@
             </div>
         </section>
 
-        <!-- Projects (Horizontal Scroll) -->
-        <section id="projects" class="projects-container relative bg-linen overflow-hidden">
-            <div class="projects-inner flex flex-col lg:flex-row lg:items-center lg:h-screen px-6 md:px-12 py-24 lg:py-0">
-                <div class="lg:w-[35vw] lg:flex-shrink-0 mb-16 lg:mb-0 lg:mr-32">
-                    <h2 class="text-4xl md:text-6xl font-sans font-black tracking-tighter leading-none mb-8">OBRAS QUE<br>FALAM POR SI.</h2>
-                    <p class="text-lg font-merlo text-charcoal/60">Arraste para explorar o padrão VR de construção.</p>
+        <!-- Expertise (Serviços) -->
+        <section id="expertise" class="bg-charcoal text-linen py-32 md:py-48 px-6 md:px-12 border-y border-linen/5">
+            <div class="container mx-auto">
+                <div class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-24">
+                    <div class="max-w-xl">
+                        <h2 class="text-[10px] tracking-[0.4em] uppercase text-ochre mb-12">ESPECIALIDADES</h2>
+                        <h3 class="text-4xl md:text-6xl font-sans font-black tracking-tighter leading-none">DOMÍNIO TÉCNICO<br>DO INÍCIO AO FIM.</h3>
+                    </div>
+                    <div class="lg:pt-24">
+                        <p class="font-merlo text-lg opacity-60 max-w-sm">Soluções integradas para obras que exigem precisão estrutural e refinamento estético.</p>
+                    </div>
                 </div>
 
-                <!-- Project Cards (Placeholders) -->
-                <div class="project-card w-full lg:w-[45vw] lg:flex-shrink-0 lg:mr-24 mb-20 lg:mb-0">
-                    <div class="text-[10px] tracking-[0.3em] uppercase opacity-30 mb-6">01 // RESIDENCIAL</div>
-                    <div class="aspect-[4/3] bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden group">
-                        <span class="text-[10px] uppercase tracking-widest opacity-20">Imagem de Alta Resolução</span>
-                        <div class="absolute inset-0 bg-charcoal opacity-0 group-hover:opacity-10 transition-opacity duration-700"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-linen/10 border border-linen/10">
+                    <div class="bg-charcoal p-12 hover:bg-ochre transition-colors duration-700 group">
+                        <div class="text-ochre group-hover:text-linen mb-8">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 35V15L20 5L35 15V35H5Z" />
+                                <path d="M5 25H35" />
+                                <path d="M15 35V25" />
+                                <path d="M25 35V25" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-sans font-bold mb-4">Estruturas de Concreto</h4>
+                        <p class="text-sm opacity-50 font-merlo leading-relaxed">Fundações e superestruturas calculadas para longevidade e segurança máxima.</p>
                     </div>
-                    <p class="mt-8 font-merlo text-lg">Mansão dos Pinhais — Estrutura e Acabamento Premium.</p>
+                    <div class="bg-charcoal p-12 hover:bg-ochre transition-colors duration-700 group">
+                        <div class="text-ochre group-hover:text-linen mb-8">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="5" y="10" width="30" height="20" />
+                                <path d="M15 10V30" />
+                                <path d="M25 10V30" />
+                                <path d="M5 20H35" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-sans font-bold mb-4">Alvenaria Estrutural</h4>
+                        <p class="text-sm opacity-50 font-merlo leading-relaxed">Elevação de paredes com prumo e esquadro impecáveis, otimizando o reboco.</p>
+                    </div>
+                    <div class="bg-charcoal p-12 hover:bg-ochre transition-colors duration-700 group">
+                        <div class="text-ochre group-hover:text-linen mb-8">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 10H35V30H5V10Z" />
+                                <path d="M10 15H30" />
+                                <path d="M10 20H30" />
+                                <path d="M10 25H30" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-sans font-bold mb-4">Acabamentos Finos</h4>
+                        <p class="text-sm opacity-50 font-merlo leading-relaxed">Assentamento de porcelanatos de grande formato e revestimentos de alto padrão.</p>
+                    </div>
+                    <div class="bg-charcoal p-12 hover:bg-ochre transition-colors duration-700 group">
+                        <div class="text-ochre group-hover:text-linen mb-8">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 15L20 5L35 15" />
+                                <path d="M10 15V35H30V15" />
+                                <path d="M20 20V35" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-sans font-bold mb-4">Telhados e Coberturas</h4>
+                        <p class="text-sm opacity-50 font-merlo leading-relaxed">Montagem de estruturas de madeira e metal com isolamento térmico e acústico.</p>
+                    </div>
+                    <div class="bg-charcoal p-12 hover:bg-ochre transition-colors duration-700 group">
+                        <div class="text-ochre group-hover:text-linen mb-8">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 30L15 10L25 30" />
+                                <path d="M35 30H5" />
+                                <circle cx="20" cy="20" r="5" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-sans font-bold mb-4">Leitura de Projetos</h4>
+                        <p class="text-sm opacity-50 font-merlo leading-relaxed">Execução rigorosa baseada em plantas arquitetônicas e complementares.</p>
+                    </div>
+                    <div class="bg-charcoal p-12 hover:bg-ochre transition-colors duration-700 group">
+                        <div class="text-ochre group-hover:text-linen mb-8">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M10 10L30 30" />
+                                <path d="M30 10L10 30" />
+                                <rect x="5" y="5" width="30" height="30" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-sans font-bold mb-4">Reformas Estruturais</h4>
+                        <p class="text-sm opacity-50 font-merlo leading-relaxed">Reforço e modernização de edificações antigas com segurança garantida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="bg-linen py-32 md:py-48 overflow-hidden">
+            <div class="container mx-auto mb-12 px-6 md:px-12">
+                <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-[1px] bg-charcoal"></div>
+                            <span class="text-[10px] font-bold tracking-[0.2em] uppercase">PROJETOS</span>
+                        </div>
+                        <h2 class="text-4xl md:text-6xl font-sans font-black tracking-tighter leading-[0.95]">
+                            Obras que refletem<br>nosso compromisso.
+                        </h2>
+                    </div>
+
+                    <!-- Drag Hint -->
+                    <div class="flex items-center gap-4 opacity-50">
+                        <div class="flex gap-1.5">
+                            <div class="w-6 h-[1px] bg-charcoal"></div>
+                            <div class="w-3 h-[1px] bg-ochre"></div>
+                        </div>
+                        <span class="text-[10px] font-bold tracking-[0.15em] uppercase">ARRASTE PARA VER MAIS</span>
+                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" class="text-ochre">
+                            <path d="M1 5h14M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horizontal Track -->
+            <div id="projects-track" class="flex gap-4 px-[5vw] select-none overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing" style="scroll-behavior: smooth;">
+
+                <div class="project-item flex-shrink-0 w-[clamp(280px,38vw,560px)] group">
+                    <div class="aspect-video bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden">
+                        <span class="text-[10px] uppercase tracking-widest opacity-20">01 // RESIDENCIAL</span>
+                        <div class="absolute inset-0 bg-ochre/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <p class="mt-6 font-merlo text-lg text-charcoal/70">Mansão dos Pinhais — Estrutura e Acabamento Premium.</p>
                 </div>
 
-                <div class="project-card w-full lg:w-[45vw] lg:flex-shrink-0 lg:mr-24 mb-20 lg:mb-0">
-                    <div class="text-[10px] tracking-[0.3em] uppercase opacity-30 mb-6">02 // COMERCIAL</div>
-                    <div class="aspect-[4/3] bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden group">
-                        <span class="text-[10px] uppercase tracking-widest opacity-20">Imagem de Alta Resolução</span>
+                <div class="project-item flex-shrink-0 w-[clamp(280px,38vw,560px)] group">
+                    <div class="aspect-video bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden">
+                        <span class="text-[10px] uppercase tracking-widest opacity-20">02 // COMERCIAL</span>
+                        <div class="absolute inset-0 bg-ochre/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <p class="mt-8 font-merlo text-lg">Edifício Plaza — Precisão na Fachada e Fundações.</p>
+                    <p class="mt-6 font-merlo text-lg text-charcoal/70">Edifício Plaza — Precisão na Fachada e Fundações.</p>
                 </div>
 
-                <div class="project-card w-full lg:w-[45vw] lg:flex-shrink-0 lg:mr-24 mb-20 lg:mb-0">
-                    <div class="text-[10px] tracking-[0.3em] uppercase opacity-30 mb-6">03 // INDUSTRIAL</div>
-                    <div class="aspect-[4/3] bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden group">
-                        <span class="text-[10px] uppercase tracking-widest opacity-20">Imagem de Alta Resolução</span>
+                <div class="project-item flex-shrink-0 w-[clamp(280px,38vw,560px)] group">
+                    <div class="aspect-video bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden">
+                        <span class="text-[10px] uppercase tracking-widest opacity-20">03 // INDUSTRIAL</span>
+                        <div class="absolute inset-0 bg-ochre/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <p class="mt-8 font-merlo text-lg">Galpão Logístico — Solidez para Grandes Cargas.</p>
+                    <p class="mt-6 font-merlo text-lg text-charcoal/70">Galpão Logístico — Solidez para Grandes Cargas.</p>
                 </div>
 
-                <div class="project-card w-full lg:w-[45vw] lg:flex-shrink-0 mb-20 lg:mb-0">
-                    <div class="text-[10px] tracking-[0.3em] uppercase opacity-30 mb-6">04 // REFORMA</div>
-                    <div class="aspect-[4/3] bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden group">
-                        <span class="text-[10px] uppercase tracking-widest opacity-20">Imagem de Alta Resolução</span>
+                <div class="project-item flex-shrink-0 w-[clamp(280px,38vw,560px)] group">
+                    <div class="aspect-video bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden">
+                        <span class="text-[10px] uppercase tracking-widest opacity-20">04 // REFORMA</span>
+                        <div class="absolute inset-0 bg-ochre/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <p class="mt-8 font-merlo text-lg">Revitalização de Patrimônio — Cuidado e Restauro.</p>
+                    <p class="mt-6 font-merlo text-lg text-charcoal/70">Revitalização de Patrimônio — Cuidado e Restauro.</p>
+                </div>
+
+                <div class="project-item flex-shrink-0 w-[clamp(280px,38vw,560px)] group">
+                    <div class="aspect-video bg-charcoal/5 flex items-center justify-center border border-charcoal/5 relative overflow-hidden">
+                        <span class="text-[10px] uppercase tracking-widest opacity-20">05 // RESIDENCIAL</span>
+                        <div class="absolute inset-0 bg-ochre/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <p class="mt-6 font-merlo text-lg text-charcoal/70">Residência Vale — Minimalismo e Robustez.</p>
+                </div>
+
+                <!-- Spacer for end -->
+                <div class="flex-shrink-0 w-[5vw]"></div>
+            </div>
+        </section>
+
+        <!-- Methodology (Cronograma) -->
+        <section id="methodology" class="bg-linen py-32 md:py-48 px-6 md:px-12 border-t border-charcoal/5 overflow-hidden">
+            <div class="container mx-auto">
+                <div class="max-w-3xl mb-24">
+                    <h2 class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-12">METODOLOGIA</h2>
+                    <h3 class="text-4xl md:text-6xl font-sans font-black tracking-tighter leading-[0.95]">O CRONOGRAMA É<br>O NOSSO CONTRATO.</h3>
+                </div>
+
+                <div class="space-y-32">
+                    <!-- Phase 1 -->
+                    <div class="method-step flex flex-col md:flex-row gap-12 md:gap-24 items-start relative">
+                        <div class="text-6xl md:text-8xl font-sans font-black text-outline opacity-20 leading-none">01</div>
+                        <div class="max-w-xl">
+                            <h4 class="text-2xl font-sans font-bold mb-6">Planejamento e Alinhamento</h4>
+                            <p class="font-merlo text-lg text-charcoal/70 leading-relaxed mb-8">Análise técnica detalhada das plantas, definição de prazos reais e organização do canteiro de obras. Sem surpresas no orçamento.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <span class="bg-charcoal/5 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Estudo de Viabilidade</span>
+                                <span class="bg-charcoal/5 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Cronograma Físico-Financeiro</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="method-step flex flex-col md:flex-row gap-12 md:gap-24 items-start relative">
+                        <div class="text-6xl md:text-8xl font-sans font-black text-outline opacity-20 leading-none">02</div>
+                        <div class="max-w-xl">
+                            <h4 class="text-2xl font-sans font-bold mb-6">Execução e Rigor Técnico</h4>
+                            <p class="font-merlo text-lg text-charcoal/70 leading-relaxed mb-8">Acompanhamento diário da evolução. Mão de obra qualificada focada em cada milímetro da estrutura e alvenaria.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <span class="bg-charcoal/5 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Controle de Qualidade</span>
+                                <span class="bg-charcoal/5 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Gestão de Materiais</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="method-step flex flex-col md:flex-row gap-12 md:gap-24 items-start relative">
+                        <div class="text-6xl md:text-8xl font-sans font-black text-outline opacity-20 leading-none">03</div>
+                        <div class="max-w-xl">
+                            <h4 class="text-2xl font-sans font-bold mb-6">Acabamento e Entrega</h4>
+                            <p class="font-merlo text-lg text-charcoal/70 leading-relaxed mb-8">O refino final que valoriza o imóvel. Entrega das chaves com a obra limpa e todos os sistemas testados.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <span class="bg-charcoal/5 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Detalhamento Estético</span>
+                                <span class="bg-charcoal/5 px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Checklist Final</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Video (Lazy) -->
+        <section id="process" class="bg-charcoal py-32 md:py-48 px-6 md:px-12 overflow-hidden">
+            <div class="container mx-auto">
+                <div class="flex flex-col lg:flex-row gap-24 items-center">
+                    <div class="lg:w-1/3">
+                        <h2 class="text-[10px] tracking-[0.4em] uppercase text-ochre mb-12">O PROCESSO</h2>
+                        <h3 class="text-4xl md:text-5xl font-sans font-black tracking-tighter text-linen leading-none mb-8">VERDADE<br>NA EXECUÇÃO.</h3>
+                        <p class="text-linen/60 font-merlo text-lg">Assista como transformamos matéria-prima em fundações inabaláveis. O rigor técnico é visível em cada etapa.</p>
+                    </div>
+                    <div class="lg:w-2/3 w-full">
+                        <div class="video-container relative aspect-video bg-linen/5 overflow-hidden group border border-linen/10">
+                            <!-- Video will be lazy-loaded here -->
+                            <video
+                                class="lazy-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+                                muted
+                                loop
+                                playsinline
+                                data-src="https://assets.mixkit.co/videos/preview/mixkit-worker-measuring-a-brick-wall-in-a-construction-4835-large.mp4">
+                            </video>
+                            <div class="video-overlay absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div class="w-20 h-20 border border-linen/20 rounded-full flex items-center justify-center">
+                                    <div class="w-12 h-[1px] bg-linen/40 animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -228,37 +477,131 @@
             </div>
         </section>
 
-        <!-- Contact -->
-        <section id="contact" class="bg-charcoal text-linen py-32 md:py-48 px-6 md:px-12 relative overflow-hidden">
-            <div class="container mx-auto relative z-10 flex flex-col xl:flex-row justify-between items-center gap-20">
-                <div class="max-w-2xl">
-                    <h2 class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-12">CONTATO DIRETO</h2>
-                    <h3 class="text-5xl md:text-7xl font-sans font-black tracking-tighter leading-none mb-12">SUA OBRA MERECE<br>ESTE NÍVEL.</h3>
-                    <p class="font-merlo text-lg opacity-60 max-w-lg mb-12">Fale diretamente com quem executa. Sem intermediários, sem ruído, apenas engenharia e prática.</p>
-
-                    <div class="flex items-center gap-6 mb-12">
-                        <div class="w-16 h-16 bg-linen/5 rounded-full flex items-center justify-center text-[#25D366]">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93a7.898 7.898 0 0 0-2.327-5.607zM7.994 14.52a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-                            </svg>
+        <!-- Service Area -->
+        <section id="service-area" class="bg-charcoal py-32 md:py-48 px-6 md:px-12 border-t border-linen/5 overflow-hidden">
+            <div class="container mx-auto">
+                <div class="flex flex-col lg:flex-row gap-24 items-center">
+                    <div class="lg:w-1/2">
+                        <h2 class="text-[10px] tracking-[0.4em] uppercase text-ochre mb-12">ONDE ATUAMOS</h2>
+                        <h3 class="text-4xl md:text-6xl font-sans font-black tracking-tighter text-linen leading-none mb-12">PRESENÇA NO<br>VALE DO RIO PARDO.</h3>
+                        <p class="text-linen/60 font-merlo text-lg max-w-md">Atendemos projetos residenciais, comerciais e industriais em locais estratégicos da região.</p>
+                    </div>
+                    <div class="lg:w-1/2 w-full grid grid-cols-2 gap-8">
+                        <div class="city-item border-l border-linen/10 pl-8 py-4">
+                            <h4 class="text-linen text-xl font-sans font-bold">Santa Cruz do Sul</h4>
+                            <p class="text-[10px] text-ochre tracking-widest uppercase mt-2">Base Principal</p>
                         </div>
-                        <div>
-                            <p class="text-[8px] tracking-[0.3em] opacity-40 uppercase mb-1">WHATSAPP</p>
-                            <p class="text-2xl font-sans font-black">51 9 9511-4411</p>
+                        <div class="city-item border-l border-linen/10 pl-8 py-4">
+                            <h4 class="text-linen text-xl font-sans font-bold">Vera Cruz</h4>
+                            <p class="text-[10px] text-linen/40 tracking-widest uppercase mt-2">Região Metropolitana</p>
+                        </div>
+                        <div class="city-item border-l border-linen/10 pl-8 py-4">
+                            <h4 class="text-linen text-xl font-sans font-bold">Venâncio Aires</h4>
+                            <p class="text-[10px] text-linen/40 tracking-widest uppercase mt-2">Eixo Industrial</p>
+                        </div>
+                        <div class="city-item border-l border-linen/10 pl-8 py-4">
+                            <h4 class="text-linen text-xl font-sans font-bold">Lajeado</h4>
+                            <p class="text-[10px] text-linen/40 tracking-widest uppercase mt-2">Vale do Taquari</p>
+                        </div>
+                        <div class="city-item border-l border-linen/10 pl-8 py-4">
+                            <h4 class="text-linen text-xl font-sans font-bold">Rio Pardo</h4>
+                            <p class="text-[10px] text-linen/40 tracking-widest uppercase mt-2">Região Histórica</p>
+                        </div>
+                        <div class="city-item border-l border-linen/10 pl-8 py-4">
+                            <h4 class="text-linen text-xl font-sans font-bold">Sinimbu</h4>
+                            <p class="text-[10px] text-linen/40 tracking-widest uppercase mt-2">Região Serrana</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="w-full xl:w-auto">
-                    <a href="https://wa.me/5551995114411" target="_blank" class="block w-full text-center bg-linen text-charcoal px-12 py-8 text-sm font-bold uppercase tracking-[0.2em] hover:bg-ochre hover:text-linen transition-colors duration-700">
-                        INICIAR ORÇAMENTO
-                    </a>
+        <!-- FAQ -->
+        <section id="faq" class="bg-linen py-32 md:py-48 px-6 md:px-12 border-t border-charcoal/5">
+            <div class="container mx-auto max-w-4xl">
+                <div class="mb-24">
+                    <h2 class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-12">DÚVIDAS FREQUENTES</h2>
+                    <h3 class="text-4xl md:text-5xl font-sans font-black tracking-tighter leading-none">TRANSPARÊNCIA<br>DESDE O PRIMEIRO CONTATO.</h3>
+                </div>
+
+                <div class="divide-y divide-charcoal/10 border-t border-charcoal/10">
+                    <div class="faq-item py-8 group cursor-pointer">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-xl font-sans font-bold">Você trabalha com fornecimento de materiais?</h4>
+                            <span class="faq-icon text-2xl transition-transform duration-500">+</span>
+                        </div>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="font-merlo text-charcoal/70">Atuamos preferencialmente com a mão de obra especializada, mas oferecemos consultoria completa para a compra dos melhores materiais, garantindo o melhor custo-benefício para o cliente.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item py-8 group cursor-pointer">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-xl font-sans font-bold">Qual a região de atendimento?</h4>
+                            <span class="faq-icon text-2xl transition-transform duration-500">+</span>
+                        </div>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="font-merlo text-charcoal/70">Nossa base é em Santa Cruz do Sul, mas atendemos toda a região do Vale do Rio Pardo e proximidades, dependendo do porte do projeto.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item py-8 group cursor-pointer">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-xl font-sans font-bold">Como funciona o pagamento?</h4>
+                            <span class="faq-icon text-2xl transition-transform duration-500">+</span>
+                        </div>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <p class="font-merlo text-charcoal/70">Trabalhamos com medições quinzenais ou mensais, onde o cliente paga pelo que foi efetivamente executado no período, garantindo total controle financeiro da obra.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="bg-charcoal text-linen py-32 md:py-48 px-6 md:px-12 relative overflow-hidden">
+            <div class="container mx-auto relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <!-- Image/Visual Side -->
+                    <div class="relative aspect-[4/5] bg-linen/5 overflow-hidden group">
+                        <div class="absolute inset-0 bg-ochre/10 group-hover:bg-ochre/20 transition-colors duration-700"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-10">
+                            <img src="./logo.png" alt="VR Monogram" class="w-1/2 h-auto filter invert grayscale">
+                        </div>
+                        <div class="absolute bottom-12 left-12">
+                            <p class="text-[10px] tracking-[0.5em] uppercase opacity-40 mb-4">DISPONIBILIDADE</p>
+                            <p class="text-xl font-merlo">Agenda aberta para<br>o segundo semestre.</p>
+                        </div>
+                    </div>
+
+                    <!-- Text Side -->
+                    <div>
+                        <h2 class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-12">CONTATO DIRETO</h2>
+                        <h3 class="text-5xl md:text-7xl font-sans font-black tracking-tighter leading-none mb-12">SUA OBRA MERECE<br>ESTE NÍVEL.</h3>
+                        <p class="font-merlo text-lg opacity-60 max-w-lg mb-12">Fale diretamente com quem executa. Sem intermediários, sem ruído, apenas engenharia e prática.</p>
+
+                        <div class="flex items-center gap-6 mb-16">
+                            <div class="w-16 h-16 bg-linen/5 rounded-full flex items-center justify-center text-[#25D366]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93a7.898 7.898 0 0 0-2.327-5.607zM7.994 14.52a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-[8px] tracking-[0.3em] opacity-40 uppercase mb-1">WHATSAPP</p>
+                                <p class="text-2xl font-sans font-black">51 9 9511-4411</p>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/5551995114411" target="_blank" class="block w-full md:w-max text-center bg-linen text-charcoal px-12 py-8 text-sm font-bold uppercase tracking-[0.2em] hover:bg-ochre hover:text-linen transition-colors duration-700">
+                            INICIAR ORÇAMENTO
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Monumental Background Text -->
-            <div class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03]">
-                <h4 class="text-[25vw] font-sans font-black tracking-tighter leading-none whitespace-nowrap -mb-8">VILSON RODRIGUES</h4>
+            <div class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none flex justify-center">
+                <h4 class="monumental-text text-[10.5vw] font-sans font-black tracking-tighter leading-none whitespace-nowrap mb-2 uppercase">VILSON RODRIGUES</h4>
             </div>
         </section>
 
@@ -274,6 +617,7 @@
                 <div class="flex gap-16">
                     <div class="flex flex-col space-y-2 text-[10px] font-bold tracking-widest uppercase">
                         <a href="#about" class="opacity-40 hover:opacity-100 transition-opacity">SOBRE</a>
+                        <a href="#expertise" class="opacity-40 hover:opacity-100 transition-opacity">SERVIÇOS</a>
                         <a href="#projects" class="opacity-40 hover:opacity-100 transition-opacity">OBRAS</a>
                         <a href="#contact" class="opacity-40 hover:opacity-100 transition-opacity">CONTATO</a>
                     </div>
@@ -289,6 +633,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="./main.js"></script>
 </body>
