@@ -204,11 +204,11 @@ function initAnimations() {
     // Navbar Threshold Logic
     const navbar = document.getElementById('navbar');
     const navContainer = document.getElementById('nav-container');
-    const aboutSection = document.getElementById('about');
+    const secondSection = document.getElementById('commitment');
     const whatsappBtn = document.querySelector('.whatsapp-btn');
 
     ScrollTrigger.create({
-        trigger: aboutSection,
+        trigger: secondSection,
         start: "top 100px",
         onEnter: () => {
             navbar.classList.add('scrolled');
